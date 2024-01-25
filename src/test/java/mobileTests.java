@@ -1,6 +1,7 @@
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
+import org.openqa.selenium.html5.Location;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -24,10 +25,20 @@ public class mobileTests {
         capabilities.setCapability("app", "/home/qa/Downloads/izi.TRAVEL.apk");
         capabilities.setCapability("appPackage", "travel.opas.client");
         capabilities.setCapability("automationName", "UiAutomator2"); // Use UiAutomator2 for Android
+        // Enable GPS mocking for Android
+        capabilities.setCapability("gpsEnabled", true);
+
+
 
      //  AppiumDriver<MobileElement> driver = null;
         driver = new AppiumDriver<>(new URL("http://127.0.1.1:4723/wd/hub"), capabilities);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+        // Mock the initial location (e.g., coordinates for a specific location)
+        double initialLatitude = 37.7749;
+        double initialLongitude = -122.4194;
+        driver.setLocation(new Location(initialLatitude, initialLongitude,0));
+
     }
 
     @Test(priority=1)
