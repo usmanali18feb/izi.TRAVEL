@@ -87,9 +87,15 @@ public class FreeWalikgTest {
         Thread.sleep(500);
         Assert.assertEquals(autoPlay.isDisplayed(), true, "Notfound");
         autoPlay.click();
-        Thread.sleep(15000);
+        Thread.sleep(5000);
     }
+    @Test(priority=6)
 
+    public void assertPlayingAudio() throws InterruptedException {
+        MobileElement assertPlayAudio = (MobileElement) driver.findElement(MobileBy.id("travel.opas.client:id/action_button"));
+        Thread.sleep(500);
+        Assert.assertEquals(assertPlayAudio.isDisplayed(), true, "Notfound");
+    }
     @AfterClass
     public void tearDown() {
         if (driver != null) {
